@@ -1,23 +1,39 @@
 import EmojiPicker from 'emoji-picker-react';
 import React,{useEffect,useState} from 'react';
+import Card from './Card'
 export default function 
-PropertyPane({currentCard}){
+PropertyPane({cards}){
     const [showSubtitle,setSubtitle] = useState();
     const [showTitle,setTitle] = useState();
     const [showEmoji,setEmoji] = useState();
+    
+    const [currentCard,setCurrentCard]= useState(1);
+    const [previousCard,setPreviousCard]= useState();
+    const [nextCard,setNextCard]= useState();
+
+
     useEffect(()=>{
         if(currentCard){
-            setSubtitle(currentCard.showsubtitle)
-            setTitle(currentCard.showtitle)
-            setEmoji(currentCard.showemoji)
+            setSubtitle(cards[currentCard].showsubtitle)
+            setTitle(cards[currentCard].showtitle)
+            setEmoji(cards[currentCard].showemoji)
         // }else{
         //     setSubtitle(false)
         //     setTitle(false)
         //     setEmoji(false)
         }
     },[currentCard])
-
-    return <div className="p-3 bg-white shadow-lg p-4 m-3">
+    const Cards = ()=>{
+        return cards && cards.map((item,index)=>{
+          return <div onClick={()=>setCurrentCard(index)}>
+            <Card item={item} showTitle={showTitle} 
+            showSubtitle={showSubtitle} showEmoji={showEmoji}/>
+            </div>
+        })
+      }
+    return <>
+    <div className="flex grid grid-cols-3 overscroll-auto focus:overscroll-contain"><Cards/>  </div>   
+    <div className="p-3 bg-white shadow-lg p-4 m-3">
         <h3 className="font-bold">INTRO SETTINGS</h3>
         <div>
             <label className="relative inline-flex items-center cursor-pointer">
@@ -47,5 +63,5 @@ PropertyPane({currentCard}){
             </label>
             <div><input type="text" value={showEmoji}/> <EmojiPicker /></div>
         </div>
-    </div>
+    </div></>
 }

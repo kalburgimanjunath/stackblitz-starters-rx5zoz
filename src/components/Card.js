@@ -1,8 +1,8 @@
-export default function Card({ subtitle, title, emoji,background }) {
-    return <div className="shadow-md m-2 p-4 cursor-pointer" style={{backgroundColor:background}}>
+export default function Card({ item,showTitle,showSubtitle,showEmoji }) {
+    return <div className="shadow-md m-2 p-4 cursor-pointer" style={{backgroundColor:item.background}}>
+        {showSubtitle ? <div className="font-normal">{item.subtitle}</div>:''}
         
-        <div className="font-normal">{subtitle}</div>
-        <div className="font-bold text-3xl">{title}</div>
-        <div>{emoji}</div>
+        {showTitle ? <div className="font-bold text-3xl">{item.title}</div>:''}
+        {showEmoji ? <div>{item.emoji}</div>:''}
     </div>
 }

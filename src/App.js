@@ -34,24 +34,17 @@ export default function App() {
     showemoji:true
   },
 ];
-  const [currentCard,setCurrentCard]= useState(0);
-  const [previousCard,setPreviousCard]= useState();
-  const [nextCard,setNextCard]= useState();
+  // const [currentCard,setCurrentCard]= useState(1);
+  // const [previousCard,setPreviousCard]= useState();
+  // const [nextCard,setNextCard]= useState();
 
-    const Cards = ()=>{
-    return cards && cards.map((item,index)=>{
-
-      return <div onClick={()=>setCurrentCard(index)}><Card title={item.title} subtitle={item.subtitle} emoji={item.emoji} background={item.background}/></div>
-    })
-  }
+    
 
   return (
     <div className="container">
-      <Header />
-      <div className="flex grid grid-cols-3 overscroll-auto focus:overscroll-contain"><Cards/>  </div>   
-      <div>{currentCard}</div>
-      {currentCard ? <PropertyPane 
-      currentCard={cards[currentCard]}/>:''}
+      <Header />      
+      <PropertyPane 
+      cards={cards}/>
     </div>
   );
 }

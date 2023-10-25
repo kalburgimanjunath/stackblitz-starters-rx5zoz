@@ -9,9 +9,9 @@ export default function App() {
     subtitle:'sub title goes here',
     emoji:'emoji',
     background:'#d8d8d8',
-    showtitle:true,
-    showsubtitle:true,
-    showemoji:true
+    showtitle:false,
+    showsubtitle:false,
+    showemoji:false
   },
   {
     id:2,
@@ -34,7 +34,7 @@ export default function App() {
     showemoji:true
   },
 ];
-  const [currentCard,setCurrentCard]= useState(1);
+  const [currentCard,setCurrentCard]= useState(0);
   const [previousCard,setPreviousCard]= useState();
   const [nextCard,setNextCard]= useState();
 
@@ -44,6 +44,7 @@ export default function App() {
       return <div onClick={()=>setCurrentCard(item.id)}><Card title={item.title} subtitle={item.subtitle} emoji={item.emoji} background={item.background}/></div>
     })
   }
+
   return (
     <div className="container">
       <Header />

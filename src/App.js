@@ -19,7 +19,7 @@ export default function App() {
     subtitle:'sub title2 goes here',
     emoji:'emoji',
     background:'#b0b0b0',
-    showtitle:true,
+    showtitle:false,
     showsubtitle:true,
     showemoji:true
   },
@@ -38,10 +38,10 @@ export default function App() {
   const [previousCard,setPreviousCard]= useState();
   const [nextCard,setNextCard]= useState();
 
-  const Cards = ()=>{
-    return cards && cards.map(item=>{
+    const Cards = ()=>{
+    return cards && cards.map((item,index)=>{
 
-      return <div onClick={()=>setCurrentCard(item.id)}><Card title={item.title} subtitle={item.subtitle} emoji={item.emoji} background={item.background}/></div>
+      return <div onClick={()=>setCurrentCard(index)}><Card title={item.title} subtitle={item.subtitle} emoji={item.emoji} background={item.background}/></div>
     })
   }
 
@@ -50,7 +50,8 @@ export default function App() {
       <Header />
       <div className="flex grid grid-cols-3 overscroll-auto focus:overscroll-contain"><Cards/>  </div>   
       <div>{currentCard}</div>
-      <PropertyPane currentCard={cards[currentCard]}/>
+      {currentCard ? <PropertyPane 
+      currentCard={cards[currentCard]}/>:''}
     </div>
   );
 }
